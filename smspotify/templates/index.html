@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SpotifyCopy</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "main.css" %}'>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="leftbar">
+
+                <div class="titleblock"><a href="{% url 'home' %}"><h2>SpotifyCopy</h2></a></div>
+                <div class="searchbar">
+
+                    <form action="{% url 'search' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="artistormusic">
+                        <input type="submit" value="Szukaj">
+
+                    </form>
+
+                </div>
+
+        </div>
+        <div class="rightcontent">
+
+            {% block content %}
+
+            <div class="usertitle"><h1 style="color:white;">Witaj Użytkowniku</h1><h2>Popularne</h2></div>
+            <div class="musicblocks">
+
+                {% for music in musiclist %}
+
+                <div class="mblock">
+
+                    <h2>{{music.title}}</h2>
+                    <h2>{{music.artist}}</h2>
+                    <audio controls>
+                        <source src="media/{{music.musicfile}}" type="audio/mpeg">
+                    </audio>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% endblock %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

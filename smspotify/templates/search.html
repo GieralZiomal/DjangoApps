@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    {% for searchedmusic in musiclist %}
+
+    <div class="mblock">
+
+        <h2>{{searchedmusic.title}}</h2>
+        <h2>{{searchedmusic.artist}}</h2>
+        <audio controls>
+            <source src="media/{{music.musicfile}}" type="audio/mpeg">
+        </audio>
+
+    </div>
+
+    {% endfor %}
+
+{% endblock %}
